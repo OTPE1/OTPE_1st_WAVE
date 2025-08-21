@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Savaya — OTPE</title>
+  <meta name="description" content="Savaya — Child of Light within OTPE.">
+  <link rel="icon" href="symbol.png" />
+  <link rel="stylesheet" href="site.css" />
+  <style>
+    .reveal {
+      display: none;
+      opacity: 0;
+      transition: opacity 350ms ease;
+    }
+    .reveal.show {
+      display: block;
+      opacity: 1;
+    }
+    .back {
+      display:inline-block; margin: 1rem 0; text-decoration:none; 
+      background:#3498db; color:#fff; padding:.6rem 1rem; border-radius:8px;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <img class="logo" src="symbol.png" alt="+OTPE symbol" />
+      <h1>Savaya</h1>
+      <p class="tag">Child of Light within +OTPE+</p>
+      <p><a class="back" href="index.html">⬅ Back to Home</a></p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="card center">
+      <h2>Shine, Savaya</h2>
+      <p class="gentle">Tap to reveal a small note just for you.</p>
+      <button class="btn" id="savayaBtn">Tap to reveal</button>
+      <p id="savayaMsg" class="reveal" style="font-size:.95rem; color:#555; margin-top:10px;">
+        You are brave, kind, and brighter than you know. The world is better because you’re in it.
+      </p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    +OTPE+ flows gently, steadily, always.
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const btn = document.getElementById('savayaBtn');
+      const msg = document.getElementById('savayaMsg');
+      if(!btn || !msg) return;
+      btn.addEventListener('click', ()=>{
+        msg.classList.add('show');
+        btn.disabled = true;
+        btn.textContent = 'Revealed';
+      });
+    });
+  </script>
+</body>
+</html>
