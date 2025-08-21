@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>+OTPE+ — Onion Flow</title>
+  <meta name="description" content="Peel the onion gently, one layer at a time. Continual flow, calm progress, and a safe starter-crypto guide.">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <link rel="icon" href="symbol.png" />
+  <link rel="stylesheet" href="site.css" />
+  <style>
+    /* Page-local visuals (keeps your core CSS clean) */
+    .back { display:inline-block; margin: 1rem 0; text-decoration:none; 
+            background:#3498db; color:#fff; padding:.6rem 1rem; border-radius:8px; }
+    .orb {
+      width: 160px; height: 160px; margin: 1rem auto; border-radius: 50%;
+      background: radial-gradient(circle at 40% 40%, #00e6e6, #003333 70%, #001a1a);
+      box-shadow: 0 0 25px rgba(0, 255, 230, .7), 0 0 50px rgba(0, 180, 160, .4);
+      animation: breathe 3.5s ease-in-out infinite;
+    }
+    @keyframes breathe {
+      0%,100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.06); opacity: .92; }
+    }
+    .progress {
+      margin: .5rem 0 1rem; font-size: .95rem; color: #555;
+    }
+    .onion-affirm {
+      font-size: 1.05rem; color:#222; margin: .8rem 0 1.2rem;
+    }
+    .mini {
+      font-size: .88rem; color:#666;
+    }
+    .row { display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; }
+    input[type="text"], select {
+      padding:.6rem .7rem; border:1px solid #ddd; border-radius:8px; min-width: 260px;
+    }
+    .ok { background:#27ae60; }
+    .ok:hover { background:#1f8f4e; }
+    .warn { background:#e67e22; }
+    .warn:hover { background:#c8661a; }
+    .ghost { background:#888; }
+    .ghost:hover { background:#777; }
+    .hidden { display:none; }
+    .success {
+      border-left: 5px solid #27ae60; padding: .9rem 1rem; background: #f3fff7; color:#1e6642;
+      border-radius:8px; margin-top:1rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <img class="logo" src="symbol.png" alt="+OTPE symbol" />
+      <h1>Onion Flow</h1>
+      <p class="tag">Continual layers. Gentle progress. Infinite +OTPE+.</p>
+      <p><a class="back" href="index.html">⬅ Back to Home</a></p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- Onion Peel Card -->
+    <section class="card center" id="peelCard">
+      <div class="orb" aria-hidden="true"></div>
+      <div class="progress" id="progress">Layer 1 of 7</div>
+      <h2 id="layerTitle">Begin Gently</h2>
+      <p class="onion-affirm" id="affirmText">
+        Pause and remember the in-between — the calm space where OTPE flows.
+      </p>
+      <button class="btn ok" id="peelBtn">Peel this layer</button>
+      <div class="mini" style="margin-top:.8rem;">
+        Your place is saved automatically. You can always return and continue.
+      </div>
+      <div class="mini" style="margin-top:.4rem;">
+        <button class="btn ghost" id="resetBtn" type="button">Reset & begin again</button>
+      </div>
+    </section>
+
+    <!-- Starter-Crypto Card (appears after a few layers) -->
+    <section class="card center hidden" id="cryptoCard">
+      <h2>Starter-Crypto (Safe Demo)</h2>
+      <p class="gentle">When you’re ready, you can try a safe test-network “starter” to learn, with no risk.</p>
+
+      <div class="row" style="margin-top:.8rem;">
+        <select id="network">
+          <option value="sepolia">Ethereum Sepolia (testnet)</option>
+          <option value="polygon-amoy">Polygon Amoy (testnet)</option>
+          <option value="solana-devnet">Solana Devnet (testnet)</option>
+        </select>
+        <input id="wallet" type="text" placeholder="Paste your wallet address (never your seed phrase)" />
+      </div>
+
+      <div class="mini" style="margin-top:.6rem;">
+        Tip: Use a self-custody wallet app you trust. <strong>Never share your seed phrase.</strong>
+      </div>
+
+      <div class="row" style="margin-top:.8rem;">
+        <button class="btn warn" id="faucetBtn" type="button">Open testnet faucet</button>
+        <button class="btn ok" id="saveAddrBtn" type="button">Save address</button>
+      </div>
+
+      <div id="saveNotice" class="success hidden">
+        Saved! We’ll remember your address on this device so future layers can celebrate your progress.
+      </div>
+
+      <p class="mini" style="margin-top:1rem;">
+        This demo uses <em>test networks</em> (practice coins). When you’re ready for real
+        micro-drops, we’ll upgrade safely—no custodial keys on this site.
+      </p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    +OTPE+ flows gently, steadily, always. Never share your seed phrase. This site will never ask.
+  </footer>
+
+  <script>
+    // -------- Onion Flow Logic (page-local, no core edits) --------
+    (function(){
+      const LAYERS = [
+        "Pause and remember the in-between — the calm space where OTPE flows.",
+        "Breathe positive with Dad; stay calm, keep love flowing.",
+        "Peel back the layer of doubt; let gentle belief take its place.",
+        "You are the vessel. Balance returns with every slow breath.",
+        "Energy expands when shared. Send a kind thought to someone you love.",
+        "Stand rooted like Tata; steady, present, quietly strong.",
+        "The orb within glows brighter; you carry +OTPE+ wherever you go."
+      ];
+      const total = LAYERS.length;
+      const key = "otpe_onion_layer_v1";
+
+      const peelCard = document.getElementById('peelCard');
+      const progress = document.getElementById('progress');
+      const layerTitle = document.getElementById('layerTitle');
+      const affirmText = document.getElementById('affirmText');
+      const peelBtn = document.getElementById('peelBtn');
+      const resetBtn = document.getElementById('resetBtn');
+
+      const cryptoCard = document.getElementById('cryptoCard');
+      const faucetBtn = document.getElementById('faucetBtn');
+      const saveAddrBtn = document.getElementById('saveAddrBtn');
+      const walletInput = document.getElementById('wallet');
+      const networkSel = document.getElementById('network');
+      const saveNotice = document.getElementById('saveNotice');
+
+      // Load progress
+      let idx = 0;
+      try {
+        const saved = localStorage.getItem(key);
+        if (saved !== null) idx = Math.max(0, Math.min(total-1, parseInt(saved,10)));
+      } catch(e){}
+
+      function render(){
+        progress.textContent = `Layer ${idx+1} of ${total}`;
+        layerTitle.textContent = idx === 0 ? "Begin Gently" : `Layer ${idx+1}`;
+        affirmText.textContent = LAYERS[idx];
+
+        // Show starter-crypto card after layer 3 (index 2) is completed at least once
+        const unlocked = (idx >= 2);
+        cryptoCard.classList.toggle('hidden', !unlocked);
+      }
+
+      peelBtn.addEventListener('click', () => {
+        if (idx < total - 1) {
+          idx++;
+          try { localStorage.setItem(key, String(idx)); } catch(e){}
+          render();
+        } else {
+          // Completed — loop gently / allow continual peeling
+          idx = 0;
+          try { localStorage.setItem(key, String(idx)); } catch(e){}
+          render();
+          // Tiny celebration
+          peelBtn.blur();
+          peelBtn.textContent = "Begin again ✨";
+          setTimeout(() => { peelBtn.textContent = "Peel this layer"; }, 1500);
+        }
+      });
+
+      resetBtn.addEventListener('click', () => {
+        idx = 0;
+        try { localStorage.setItem(key, String(idx)); } catch(e){}
+        render();
+      });
+
+      // Persist wallet/network (local only)
+      try {
+        const savedAddr = localStorage.getItem('otpe_wallet');
+        if (savedAddr) walletInput.value = savedAddr;
+        const savedNet = localStorage.getItem('otpe_network');
+        if (savedNet) networkSel.value = savedNet;
+      } catch(e){}
+
+      saveAddrBtn.addEventListener('click', () => {
+        const addr = walletInput.value.trim();
+        const net = networkSel.value;
+        if (!addr) return;
+        try {
+          localStorage.setItem('otpe_wallet', addr);
+          localStorage.setItem('otpe_network', net);
+        } catch(e){}
+        saveNotice.classList.remove('hidden');
+        setTimeout(()=> saveNotice.classList.add('hidden'), 2500);
+      });
+
+      faucetBtn.addEventListener('click', () => {
+        // For safety we keep this as a placeholder. Replace with your chosen faucet URLs later.
+        const net = networkSel.value;
+        let url = "#";
+        if (net === "sepolia") url = "https://example-f
