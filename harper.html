@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Harper — OTPE</title>
+  <meta name="description" content="Harper — a guiding light within OTPE.">
+  <link rel="icon" href="symbol.png" />
+  <link rel="stylesheet" href="site.css" />
+  <style>
+    /* page-local fade-in for the hidden note (no core edits needed) */
+    .reveal {
+      display: none;
+      opacity: 0;
+      transition: opacity 350ms ease;
+    }
+    .reveal.show {
+      display: block;
+      opacity: 1;
+    }
+    .back {
+      display:inline-block; margin: 1rem 0; text-decoration:none; 
+      background:#3498db; color:#fff; padding:.6rem 1rem; border-radius:8px;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <img class="logo" src="symbol.png" alt="+OTPE symbol" />
+      <h1>Harper</h1>
+      <p class="tag">A guiding light within OTPE</p>
+      <p>
+        <a class="back" href="index.html">⬅ Back to Home</a>
+      </p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="card center">
+      <h2>Harper’s Glow</h2>
+      <p class="gentle">Click to reveal a quiet note.</p>
+      <button class="btn" id="harperBtn">Click to reveal</button>
+      <p id="harperMsg" class="reveal" style="font-size:.95rem; color:#555; margin-top:10px;">
+        You have shown me who I am as part of something so much bigger. In thanks to you.
+      </p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    +OTPE+ flows gently, steadily, always.
+  </footer>
+
+  <script>
+    // Tiny, page-local JS so we don’t touch your core script.js
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const btn = document.getElementById('harperBtn');
+      const msg = document.getElementById('harperMsg');
+      if(!btn || !msg) return;
+      btn.addEventListener('click', ()=>{
+        msg.classList.add('show');
+        btn.disabled = true;
+        btn.textContent = 'Revealed';
+      });
+    });
+  </script>
+</body>
+</html>
