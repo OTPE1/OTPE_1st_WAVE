@@ -1,0 +1,100 @@
+:root {
+  --gold: #f39c12;
+  --ink: #222;
+  --bg: #fafafa;
+  --soft: #fdfdfd;
+  --card: #ffffff;
+  --accent: #3498db;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, system-ui, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+.wrap {
+  max-width: 900px;
+  margin: auto;
+  padding: 1.5rem;
+}
+
+.hero {
+  background: var(--gold);
+  color: white;
+  text-align: center;
+  padding: 2.5rem 1rem;
+}
+
+.hero .logo {
+  width: 100px;
+  height: auto;
+}
+
+.tag {
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+.card {
+  background: var(--card);
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.center {
+  text-align: center;
+}
+
+.gentle {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.qr {
+  width: 180px;
+  height: auto;
+  margin-top: 1rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 2rem;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background: #217dbb;
+}
+
+.btn.wide {
+  grid-column: span 2;
+}
+
+.foot {
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 1.5rem;
+  background: #eee;
+  margin-top: 2rem;
+}
